@@ -6,6 +6,12 @@ const routes = [
       { path: '', component: () => import('pages/IndexPage.vue') }
     ]
   },
+  {
+    path: '/maintenance',
+    children: [
+      { path: '', component: () => import('pages/maintenance.vue') }
+    ]
+  },  
 
   // Always leave this as last one,
   // but you can also remove it
