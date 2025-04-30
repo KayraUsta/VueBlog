@@ -1,13 +1,10 @@
 <template>
-  <!-- index.html dosyasının <head> bölümüne ekleyin -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <q-page class="flex flex-center">
-    <div :style="backgroundStyle">
-      <img alt="Kayra Halil Usta" src="https://r.resimlink.com/JvFbjelHzYoS.jpg" :style="imageStyle">
-      <div :style="overlayStyle">
-        <h1 :style="titleStyle">Ben Kayra Halil Usta</h1>
-        <p :style="textStyle">
+  <q-page class="custom-page">
+    <div class="background-wrapper">
+      <img alt="Kayra Halil Usta" src="src/assets/kayra.jpg" class="background-image" />
+      <div class="overlay">
+        <h1 class="title">Ben Kayra Halil Usta</h1>
+        <p class="description">
           Web geliştirme ve yazılımla uğraşan, tasarım ve işlevselliği bir araya getirerek insanların işini kolaylaştıran projeler yapmayı amaçlıyorum. 
           Yenilikleri takip etmeyi, öğrenmeyi ve öğrendiklerimi paylaşmayı istiyorum.
         </p>
@@ -17,85 +14,89 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
-
-const backgroundStyle = reactive({
-  position: 'relative',
-  width: '100%',
-  height: '100vh',
-})
-
-const imageStyle = reactive({
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover', // Görüntüyü doğru şekilde hizala
-})
-
-const overlayStyle = reactive({
-  position: 'absolute',
-  top: '0',
-  left: '0',
-  width: '100%',
-  height: '100%',
-  background: 'rgba(0, 0, 0, 0.6)', // Tüm ekranı kaplayan transparan arka plan
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  textAlign: 'center',
-  padding: '10px', // İçeriklere biraz alan bırak
-})
-
-const titleStyle = reactive({
-  fontSize: '3rem', // Başlık boyutu
-  fontWeight: '600', // Kalın başlık
-  color: '#eee',
-  marginBottom: '10px',
-  marginTop: '20%',
-  textShadow: '2px 2px 0px black, -2px -2px 0px black, -2px 2px 0px black, 2px -2px 0px black', // Siyah çerçeve efekti
-  fontFamily: '"Poppins", sans-serif', // Font
-  wordBreak: 'break-word', // Uzun başlıkların kesilmemesi için
-})
-
-const textStyle = reactive({
-  fontSize: '1.1rem',
-  color: '#bbb', // Açıklama yazısı rengi
-  maxWidth: '600px', // Metin genişliğini sınırla
-  wordBreak: 'break-word', // Metin uzunluklarına göre kırılma
-})
-
+// Script gerekmediği için boş
 </script>
 
 <style scoped>
-  .flex-center{
-    margin-top: -9%;
-   
-  }
+/* Sayfa içeriği sıfır padding/margin ile tam ekran görünmeli */
+.custom-page {
+  padding: 0;
+  margin: 0;
+  height: 100vh; /* Tam ekran yüksekliği */
+  overflow: hidden; /* Kaydırmayı engelle */
+}
+
+/* Arka plan ve içeriği birlikte saran yapı */
+.background-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Tam ekran yüksekliği */
+  overflow: hidden; /* Kaydırmayı engelle */
+}
+
+/* Resmi ekran boyutuna göre yay */
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Resmi ekranı kaplayacak şekilde ölçeklendir */
+  z-index: 1;
+}
+
+/* Transparan katman */
+.overlay {
+  position: absolute; /* Overlay tam kapsayıcı olacak */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Siyah transparan */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 2;
+  overflow: hidden; /* İçerik taşarsa kaydırma olmasın */
+}
+
+/* Başlık stili */
+.title {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #eee;
+  text-shadow: 2px 2px 0px black, -2px -2px 0px black, -2px 2px 0px black, 2px -2px 0px black;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px;
+}
+
+/* Açıklama stili */
+.description {
+  font-size: 1.2rem;
+  color: #bbb;
+  max-width: 600px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Mobil uyumlu */
 @media (max-width: 768px) {
-  /* Mobil uyumlu stil */
-  .q-page {
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
     padding: 0 10px;
+    max-width: 100%;
   }
+}
 
-  h1 {
-    font-size: 2rem; /* Mobilde başlık boyutunu küçült */
-    margin-top: 15%; /* Başlık için daha fazla üst boşluk */
-  }
-
-  p {
-    font-size: 1rem; /* Açıklama metni boyutunu mobilde küçült */
-    max-width: 100%; /* Açıklama metnini ekranın tamamına yay */
-    padding: 0 10px;
-  }
-
-  /* Görüntü için responsive özellikler */
-  .q-page img {
-    object-fit: cover;
-    width: 100%;
-    height: auto;
-  }
-  .flex-center{
-    background-color: black;
-  }
+/* Body için global kaydırma engelleme */
+:global(body) {
+  overflow: hidden; /* Tüm sayfada kaydırmayı engelle */
 }
 </style>
