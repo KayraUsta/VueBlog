@@ -6,6 +6,13 @@ const routes = [
       { path: '', component: () => import('pages/IndexPage.vue') }
     ]
   },
+    {
+    path: '/cv',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/cv.vue') }
+    ]
+  },
   {
     path: '/maintenance',
     children: [

@@ -18,7 +18,17 @@
             Çözümlerimizi keşfedin
           </span>
         </q-toolbar-title>
-        
+              <q-tabs
+          active-color="white"
+          indicator-color="transparent"
+          inline-label
+          class="desktop-only blog-tab"
+        >
+          <q-route-tab 
+            href="/cv" 
+            label="ÖZGEÇMİŞİM" 
+          />
+        </q-tabs>
         <q-tabs
           active-color="white"
           indicator-color="transparent"
@@ -132,7 +142,7 @@ import { ref } from 'vue'
 
 export default {
   setup() {
-    const leftDrawerOpen = ref(false)
+    const leftDrawerOpen = ref(true)
     
     const projects = [
       {
@@ -156,6 +166,11 @@ export default {
     ]
     
     const socials = [
+            {
+        title: 'Özgeçmişim',
+        link: '/cv',
+        logo: 'src/assets/CV.png'
+      },
       {
         title: 'LinkedIn',
         link: 'https://www.linkedin.com/in/kayra-usta-a45761252/',
@@ -171,11 +186,7 @@ export default {
         link: 'https://www.instagram.com/cherryhediyelik',
         logo: 'src/assets/insta.webp'
       },
-      {
-        title: 'Krkit Instagram',
-        link: 'https://www.instagram.com/krkit',
-        logo: 'src/assets/insta.webp'
-      }
+
     ]
 
     return {
