@@ -3,13 +3,12 @@
     <q-page-container>
       <q-page class="q-pa-md bg-grey-1">
               <div class="row justify-center q-mb-md">
-          <q-btn 
-            color="primary" 
-            icon="download" 
-            label="CV'yi İndir" 
-            @click="downloadCV"
-            class="download-btn"
-          />
+        <q-btn 
+  color="primary" 
+  icon="download" 
+  :label="t('downloadCV')" 
+  @click="downloadCV"
+/>
         </div>
         <div class="cv-container bg-white shadow-1 q-pa-lg" style="max-width: 900px;">
           <!-- Başlık ve Fotoğraf -->
@@ -17,7 +16,7 @@
             <div>
               <h1 class="text-h3 text-weight-bold text-dark" style="margin-bottom: 0;">KAYRA HALIL USTA</h1>
               <div class="text-subtitle1 text-grey-8 q-mt-xs">
-                <q-icon name="location_on" size="sm" class="q-mr-xs"/> Istanbul/Gaziosmanpaga
+                <q-icon name="location_on" size="sm" class="q-mr-xs"/> Istanbul/Gaziosmanpasa
                 <q-icon name="email" size="sm" class="q-ml-md q-mr-xs"/> kayrausta04@gmail.com
                 <q-icon name="phone" size="sm" class="q-ml-md q-mr-xs"/> 0546-580-35-21
               </div>
@@ -31,7 +30,7 @@
 
           <!-- Kişisel Bilgiler -->
           <div class="section q-mb-md">
-            <h2 class="section-title text-subtitle1">KİŞİSEL BİLGİLER</h2>
+            <h2 class="section-title text-subtitle1">{{ t('personalInfo') }}</h2>
             <div class="text-body1 q-pl-sm q-pt-sm">
               <div class="row items-center q-mb-xs">
                 <q-icon name="event" size="sm" class="q-mr-sm"/>
@@ -60,7 +59,7 @@
 
           <!-- Eğitim -->
           <div class="section q-mb-md">
-            <h2 class="section-title text-subtitle1">EĞİTİM</h2>
+            <h2 class="section-title text-subtitle1">{{ t('education') }}</h2>
             <div class="text-body1 q-pl-sm q-pt-sm">
               <div v-for="(edu, index) in education" :key="index" class="q-mb-sm">
                 <div class="text-weight-bold">{{ edu.title }}</div>
@@ -74,7 +73,7 @@
 
           <!-- İş Deneyimi -->
           <div class="section q-mb-md">
-            <h2 class="section-title text-subtitle1">İŞ DENEYİMİ</h2>
+           <h2 class="section-title text-subtitle1">{{ t('experience') }}</h2>
             <div class="text-body1 q-pl-sm q-pt-sm">
               <div v-for="(exp, index) in experience" :key="index" class="q-mb-sm">
                 <div class="text-weight-bold">{{ exp.position }}</div>
@@ -88,7 +87,7 @@
 
           <!-- Projeler -->
           <div class="section q-mb-md">
-            <h2 class="section-title text-subtitle1">PROJELER</h2>
+            <h2 class="section-title text-subtitle1">{{ t('projects') }}</h2>
             <div class="text-body1 q-pl-sm q-pt-sm">
               <div v-for="(project, index) in projects" :key="index" class="q-mb-sm">
                 <div class="text-weight-bold">{{ project.title }}</div>
@@ -101,7 +100,7 @@
 
           <!-- Beceriler -->
           <div class="section q-mb-md">
-            <h2 class="section-title text-subtitle1">BECERİLER</h2>
+            <h2 class="section-title text-subtitle1">{{ t('skills') }}</h2>
             <div class="q-pl-sm q-pt-sm">
               <div class="row">
                 <div class="col-md-6 col-sm-12" v-for="(column, colIndex) in skillColumns" :key="colIndex">
@@ -129,7 +128,7 @@
 
           <!-- Diller -->
           <div class="section q-mb-md">
-            <h2 class="section-title text-subtitle1">DİLLER</h2>
+            <h2 class="section-title text-subtitle1">{{ t('languages') }}</h2>
             <div class="text-body1 q-pl-sm q-pt-sm">
               <div v-for="(lang, index) in languages" :key="index" class="q-mb-xs">
                 <div class="row items-center">
@@ -153,7 +152,7 @@
 
           <!-- Sertifikalar -->
           <div class="section">
-            <h2 class="section-title text-subtitle1">SERTİFİKALAR</h2>
+            <h2 class="section-title text-subtitle1">{{ t('certificates') }}</h2>
             <div class="text-body1 q-pl-sm q-pt-sm">
               <q-list dense separator>
                 <q-item v-for="(cert, index) in certificates" :key="index" class="q-pa-none q-mb-xs">
@@ -170,104 +169,106 @@
   </q-layout>
 </template>
 
-<script>
-export default {
-  name: 'App',
-    methods: {
-    downloadCV() {
-      // PDF dosyasının URL'si
-      const pdfUrl = 'src/assets/CV_Kayra_Halil_Usta.pdf'
-      
-      // Yeni bir anchor elementi oluştur
-      const link = document.createElement('a')
-      link.href = pdfUrl
-      link.download = 'src/assets/CV_Kayra_Halil_Usta.pdf'
-      
-      // Document'e ekle ve tıkla
-      document.body.appendChild(link)
-      link.click()
-      
-      // Temizle
-      document.body.removeChild(link)
-    }
-  },
-  data() {
-    return {
-      skills: [
-        { name: 'HTML', level: 85, animate: true },
-        { name: 'CSS', level: 80, animate: true },
-        { name: 'PHP', level: 75, animate: true },
-        { name: 'Java', level: 65, animate: true },
-        { name: 'Javascript', level: 82, animate: true },
-        { name: 'Excel', level: 70, animate: true },
-        { name: 'Photoshop', level: 78, animate: true },
-        { name: 'Iletisim Becerileri', level: 90, animate: true },
-        { name: 'Takım Çalışması', level: 88, animate: true },
-        { name: 'Python', level: 72, animate: true },
-        { name: 'Vue', level: 83, animate: true },
-        { name: 'SQL', level: 77, animate: true }
-      ],
-      languages: [
-        { name: 'İngilizce', level: 50, animate: true }
-      ],
-      education: [
-        {
-          title: 'Bilgisayar Programcılığı',
-          institution: 'Kırklareli Üniversitesi, Kirklareli',
-          period: 'Eyl 2022 – Tem 2024'
-        },
-        {
-          title: 'Web Tasarımı ve Kodlama (Açıköğretim)',
-          institution: 'Anadolu Üniversitesi, Eskişehir',
-          period: 'Eyl 2022 – Tem 2024'
-        },
-        {
-          title: 'Oğuz Cappolat Anadolu Lisesi',
-          institution: 'İstanbul/Eyüp',
-          period: 'Eyl 2018 – Haz 2021'
-        },
-        {
-          title: 'İşletme (Açıköğretim)',
-          institution: 'İstanbul Üniversitesi, İstanbul',
-          period: 'devam ediyor'
-        }
-      ],
-      experience: [
-        {
-          position: 'İş Süreci ve Yazılım Geliştirme Uzmanı',
-          company: 'Gökkuşağı Yazılım ve Danışmanlık, İstanbul',
-          period: 'devam ediyor'
-        }
-      ],
-      projects: [
-        {
-          title: 'TaraSat – Barkod Tarama Uygulaması | Geliştirici',
-          description: 'TaraSat, barkod tarayarak ürünleri hızlıca listeleyen bir mobil/web uygulamasıdır. Bu projede, frontend ve backend entegrasyonu üzerinde çalışarak, kullanıcı arayüzü geliştirme ve veri yönetimi süreçlerinde aktif rol aldım. Vue.js, Quasar ve .NET teknolojilerini kullanarak API entegrasyonlarını gerçekleştirdik.'
-        }
-      ],
-      certificates: [
-        'E-Flow Designer Pro Sertifikası',
-        'E-Flow Designer Sertifikası',
-        'Xpoda NoCode Intern Sertifikası',
-        'BTK Akademi Microsoft PowerPoint',
-        'BTK Akademi Microsoft Word',
-        'BTK Akademi Ağ Temelleri',
-        'BTK Akademi HTML5 ile Web Geliştirme',
-        'BTK Akademi CSS Temelleri'
-      ]
-    }
-  },
-  computed: {
-    skillColumns() {
-      const mid = Math.ceil(this.skills.length / 2)
-      return [
-        this.skills.slice(0, mid),
-        this.skills.slice(mid)
-      ]
-    }
-  }
+<script setup>
+import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
+// CV indirme fonksiyonu
+function downloadCV() {
+  const pdfUrl = 'src/assets/CV_Kayra_Halil_Usta.pdf'
+  const link = document.createElement('a')
+  link.href = pdfUrl
+  link.download = 'CV_Kayra_Halil_Usta.pdf'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
 }
+
+// Yetenekler
+const skills = ref([
+  { name: 'HTML', level: 85, animate: true },
+  { name: 'CSS', level: 80, animate: true },
+  { name: 'PHP', level: 75, animate: true },
+  { name: 'Java', level: 65, animate: true },
+  { name: 'Javascript', level: 82, animate: true },
+  { name: 'Excel', level: 70, animate: true },
+  { name: 'Photoshop', level: 78, animate: true },
+  { name: 'Iletisim Becerileri', level: 90, animate: true },
+  { name: 'Takım Çalışması', level: 88, animate: true },
+  { name: 'Python', level: 72, animate: true },
+  { name: 'Vue', level: 83, animate: true },
+  { name: 'SQL', level: 77, animate: true }
+])
+
+// Becerileri iki kolona böl
+const skillColumns = computed(() => {
+  const mid = Math.ceil(skills.value.length / 2)
+  return [skills.value.slice(0, mid), skills.value.slice(mid)]
+})
+
+// Diller
+const languages = ref([
+  { name: 'İngilizce', level: 50, animate: true }
+])
+
+// Eğitim bilgileri
+const education = ref([
+  {
+    title: 'Bilgisayar Programcılığı',
+    institution: 'Kırklareli Üniversitesi, Kirklareli',
+    period: 'Eyl 2022 – Tem 2024'
+  },
+  {
+    title: 'Web Tasarımı ve Kodlama (Açıköğretim)',
+    institution: 'Anadolu Üniversitesi, Eskişehir',
+    period: 'Eyl 2022 – Tem 2024'
+  },
+  {
+    title: 'Oğuz Cappolat Anadolu Lisesi',
+    institution: 'İstanbul/Eyüp',
+    period: 'Eyl 2018 – Haz 2021'
+  },
+  {
+    title: 'İşletme (Açıköğretim)',
+    institution: 'İstanbul Üniversitesi, İstanbul',
+    period: 'devam ediyor'
+  }
+])
+
+// İş deneyimi
+const experience = ref([
+  {
+    position: 'İş Süreci ve Yazılım Geliştirme Uzmanı',
+    company: 'Gökkuşağı Yazılım ve Danışmanlık, İstanbul',
+    period: 'devam ediyor'
+  }
+])
+
+// Projeler
+const projects = ref([
+  {
+    title: 'TaraSat – Barkod Tarama Uygulaması | Geliştirici',
+    description:
+      'TaraSat, barkod tarayarak ürünleri hızlıca listeleyen bir mobil/web uygulamasıdır. Bu projede, frontend ve backend entegrasyonu üzerinde çalışarak, kullanıcı arayüzü geliştirme ve veri yönetimi süreçlerinde aktif rol aldım. Vue.js, Quasar ve .NET teknolojilerini kullanarak API entegrasyonlarını gerçekleştirdik.'
+  }
+]
+)
+
+// Sertifikalar
+const certificates = ref([
+  'E-Flow Designer Pro Sertifikası',
+  'E-Flow Designer Sertifikası',
+  'Xpoda NoCode Intern Sertifikası',
+  'BTK Akademi Microsoft PowerPoint',
+  'BTK Akademi Microsoft Word',
+  'BTK Akademi Ağ Temelleri',
+  'BTK Akademi HTML5 ile Web Geliştirme',
+  'BTK Akademi CSS Temelleri'
+])
 </script>
+
 
 <style scoped>
 .cv-container {
